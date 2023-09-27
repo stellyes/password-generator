@@ -1,15 +1,27 @@
 // Assignment code here
-function generatePassword() {
-  // Variables to store the different character sets
-  // the user picks from
-  var alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUBWXYZ";
-  var alphabetLower = "abcdefghijklmnopqrstuvwxyz";
-  var numeric = "0123456789";
-  var special = " !\"]]#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
+// Variables to store the different character sets
+// the user picks from
+var alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUBWXYZ";
+var alphabetLower = "abcdefghijklmnopqrstuvwxyz";
+var numeric = "0123456789";
+var special = " !\"]]#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+
+// Checks if number string is valid. Returns false if not.
+function isNumber(n) {
+  for (var i = 0; i < n.length; i++) {
+    if (numeric.indexOf(n) != -1) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function generatePassword() {
   // Initializing variables to be used in later for-loop
   var letter = "";
   var letterChoices = "";
+  var password = "";
 
   // Prompt user for password length
   let passwordLength = prompt(
@@ -17,9 +29,16 @@ function generatePassword() {
     "Between 8 - 128"
   );
 
-  passwordLength = Number(passwordLength);
-
-  // TODO - Add typecast check here
+  while (
+    isNumber(passwordLength) ||
+    passwordLength < 8 ||
+    passwordLength > 128
+  ) {
+    passwordLength = prompt(
+      "Please enter a valid password length",
+      "Between 8 - 128"
+    );
+  }
 
   // Sends confirmation prompts to user about what parameters they want
   // for their password generation
@@ -40,13 +59,13 @@ function generatePassword() {
     letterChoices += special;
   }
 
-  //
+  // Picks random character from letterChoices for passwordLength times to
+  // build the final password string
   for (var i = 0; i < passwordLength; i++) {
     letter = letterChoices[Math.floor(Math.random() * letterChoices.length)];
     password += letter;
   }
 
-  console.log(password);
   return password;
 }
 
