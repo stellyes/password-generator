@@ -7,16 +7,6 @@ var alphabetLower = "abcdefghijklmnopqrstuvwxyz";
 var numeric = "0123456789";
 var special = " !\"]]#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
-// Checks if number string is valid. Returns false if not.
-function isNumber(n) {
-  for (var i = 0; i < n.length; i++) {
-    if (numeric.indexOf(n) != -1) {
-      return false;
-    }
-  }
-  return true;
-}
-
 function generatePassword() {
   // Initializing variables to be used in later for-loop
   var letter = "";
@@ -29,16 +19,14 @@ function generatePassword() {
     "Between 8 - 128"
   );
 
-  while (
-    isNumber(passwordLength) ||
-    passwordLength < 8 ||
-    passwordLength > 128
-  ) {
+  while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
     passwordLength = prompt(
       "Please enter a valid password length",
       "Between 8 - 128"
     );
   }
+
+  passwordLength = Number(passwordLength);
 
   // Sends confirmation prompts to user about what parameters they want
   // for their password generation
