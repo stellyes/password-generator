@@ -4,14 +4,12 @@ function generatePassword() {
   // the user picks from
   var alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUBWXYZ";
   var alphabetLower = "abcdefghijklmnopqrstuvwxyz";
-  var numberic = "0123456789";
-  var special = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+  var numeric = "0123456789";
+  var special = " !\"]]#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
-  // Initialized boolean values to test against user input
-  var includeUpper = false;
-  var includeLower = false;
-  var includeNumeric = false;
-  var includeSpecial = false;
+  // Initializing variables to be used in later for-loop
+  var letter = "";
+  var letterChoices = "";
 
   // Prompt user for password length
   let passwordLength = prompt(
@@ -26,54 +24,26 @@ function generatePassword() {
   // Sends confirmation prompts to user about what parameters they want
   // for their password generation
 
-  if (confirm("Do you want to include uppercase letters?") == true) {
-    includeUpper = true;
+  if (confirm("Do you want to include uppercase letters?") === true) {
+    letterChoices += alphabetUpper;
   }
 
-  if (confirm("Do you want to include lowercase letters?") == true) {
-    includeLower = true;
+  if (confirm("Do you want to include lowercase letters?") === true) {
+    letterChoices += alphabetLower;
   }
 
-  if (confirm("Do you want to include numbers?") == true) {
-    includeNumeric = true;
+  if (confirm("Do you want to include numbers?") === true) {
+    letterChoices += numeric;
   }
 
-  if (confirm("Do you want to include special characters?") == true) {
-    includeSpecial = true;
+  if (confirm("Do you want to include special characters?") === true) {
+    letterChoices += special;
   }
 
-  // Initializing variables to be used in later for-loop
-  var letter = "";
-  var password = "";
-  var characterType = 0;
-
+  //
   for (var i = 0; i < passwordLength; i++) {
-    // characterType is a random number between 0 and 3 that triggers
-    // the uppercase, lowercase, numeric, or special character sequence
-    // in their respective numberings
-    characterType = Math.floor(Math.random() * 3);
-
-    // Gets random character from randomly selected category
-    // and appends it to the password string
-    switch (characterType) {
-      case 0:
-        letter =
-          alphabetUpper[Math.floor(Math.random() * alphabetUpper.length)];
-        password += letter;
-        break;
-      case 1:
-        letter =
-          alphabetLower[Math.floor(Math.random() * alphabetLower.length)];
-        password += letter;
-        break;
-      case 2:
-        letter = numberic[Math.floor(Math.random() * numberic.length)];
-        password += letter;
-        break;
-      case 3:
-        letter = special[Math.floor(Math.random() * special.length)];
-        password += letter;
-    }
+    letter = letterChoices[Math.floor(Math.random() * letterChoices.length)];
+    password += letter;
   }
 
   console.log(password);
