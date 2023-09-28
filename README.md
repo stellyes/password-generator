@@ -7,7 +7,8 @@ This password generator prompts the user for different password criteria they wi
 ## Installation
 
 No installation is required, simply open the `index.html` document in the repository in your browser.
-[![ezgif-com-video-to-gif-1.gif](https://i.postimg.cc/7Y6bX9g7/ezgif-com-video-to-gif-1.gif)](https://postimg.cc/NL3gj1Cf)
+
+[![ezgif-com-video-to-gif-2.gif](https://i.postimg.cc/ZKvbJgwc/ezgif-com-video-to-gif-2.gif)](https://postimg.cc/YhkK3XKG)
 
 ## Author
 
